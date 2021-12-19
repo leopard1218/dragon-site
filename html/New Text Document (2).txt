@@ -1,0 +1,39 @@
+11 2021 
+-complete are
+-launch of website
+-social media kick off
+-early supporters give aways
+-commuity building
+
+12 2021
+-deploy contract(ERC721)
+  Dragon NFT
+-D-app launch
+-no presale
+-start of public sale
+-Dragon black market launch
+-deploy contract(ERC20)
+  Grass Token
+-Implement Grass token in our ecosystem
+-Grass airdrop to all Dragon minters(5Grass/day)
+
+1 2022
+-Official launch Grass
+-deploy contract for farm
+-implement staking
+  stake Dragon get Grass(20Grass/day)
+  stake Grass get Grass(1%)
+-Market place launch
+
+2 2022
+-Deploy contract for the game
+-More buyable options in game
+-Expand game and giveaways
+-implements Grass in the games ecosystem
+
+3 2022
+-Start betting Game
+  when enter game, devote some Grass. 
+  If you win game, you will receive many Grass.
+-Have fun!
+ It's surprise!
