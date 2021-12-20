@@ -47,8 +47,9 @@ function initializeClock(id, endtime) {
   updateClock();
   const timeinterval = setInterval(updateClock, 1000);
 }
-
-const deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
+var date = new Date('Mon Dec 20 2021 13:33:53 GMT+0900 (Japan Standard Time)')
+// const deadline = new Date(Date.parse(new Date()) + 3 * 24 * 60 * 60 * 1000);
+const deadline = new Date(Date.parse(date) + 3 * 24 * 60 * 60 * 1000);
 initializeClock('clockdiv', deadline);
 
 
