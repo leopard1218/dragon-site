@@ -57,7 +57,7 @@
       </nav>
     </div>
   </header>
-    
+   <!-- ======= Carousel Section ======= --> 
   <section id="hero" class="d-flex flex-column justify-content-end align-items-center">
     <div class="web-tag" style="padding-top:50px">
       <div class="" style="flex-direction: row;display: flex;justify-content: center;">
@@ -122,17 +122,17 @@
         <use xlink:href="#wave-path" x="50" y="9" fill="#5e2589">
       </g>
     </svg>
-
+    
+  </section><!-- End Carousel Section -->
 
 
   <main id="main">
+    <!-- ======= Price Section ======= -->
     <section id="pricing" class="pricing">
       <div class="container">
-
         <div class="section-title" data-aos="zoom-out">
           <p>-  Dragon Price  -</p>
         </div>
-
         <div class="row">
 
           <div class="price-responsive p-4 mt-md-0">
@@ -176,80 +176,76 @@
           </div>
 
         </div>
-
       </div>
-    </section>
-
-
+    </section><!-- End Price Section -->
+    
+    <!-- ======= Mint Section ======= -->
     <section id="feathers" class="feathers">
-
       <div class="container">
         <div class="section-title" data-aos="zoom-out">
           <p>-  MINT -</p>
         </div>
-            <div class="row">
-              <div class="col-lg-6 order-1 d-flex justify-content-center order-lg-1 mt-3 mt-lg-0">
-                <img src="assets/img/change.gif" alt="" class="img-fluid">
+        <div class="row">
+          <div class="col-lg-6 order-1 d-flex justify-content-center order-lg-1 mt-3 mt-lg-0">
+            <img src="assets/img/change.gif" alt="" class="img-fluid">
+          </div>
+          <div class="col-lg-6 order-2 rder-lg-2 p-5">
+            <div id="clockdiv">
+              <div>
+                <span class="days"></span>
+                <div class="smalltext">Days</div>
               </div>
-              <div class="col-lg-6 order-2 order-lg-2 p-5">
-                <div id="clockdiv">
-                  <div>
-                    <span class="days"></span>
-                    <div class="smalltext">Days</div>
-                  </div>
-                  <div>
-                    <span class="hours"></span>
-                    <div class="smalltext">Hours</div>
-                  </div>
-                  <div>
-                    <span class="minutes"></span>
-                    <div class="smalltext">Minutes</div>
-                  </div>
-                  <div>
-                    <span class="seconds"></span>
-                    <div class="smalltext">Seconds</div>
-                  </div>
-                </div>
-
-                <div class="row pt-5 text-white rounded d-flex justify-content-center">
-                  <div class="col-5">
-                    <label class="label_txt">Mint number</label>
-                  </div>
-                  <div class="col-7">
-                    <input id="mint_num">
-                  </div>
-                </div>
-                
-                <div class="row">
-                  <h1 class="mt-4 pt-4">Total price is <span class="total-price"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FTM</h1>
-                </div>
-                
-                <div class="row justify-content-around d-flex">
-                  <button class="btn col-md-4 col-12 p-2 rounded btn-success label_txt">Mint</button>
-                  <button class="btn col-12 col-md-4 p-2 rounded btn-success label_txt">view</button>
-                </div>
-
+              <div>
+                <span class="hours"></span>
+                <div class="smalltext">Hours</div>
+              </div>
+              <div>
+                <span class="minutes"></span>
+                <div class="smalltext">Minutes</div>
+              </div>
+              <div>
+                <span class="seconds"></span>
+                <div class="smalltext">Seconds</div>
               </div>
             </div>
+
+            <div class="row pt-5 text-white rounded d-flex justify-content-center">
+              <div class="col-5">
+                <label class="label_txt">Mint number</label>
+              </div>
+              <div class="col-7">
+                <input id="mint_num">
+              </div>
+            </div>
+            
+            <div class="row">
+              <h1 class="mt-4 pt-4">Total price is <span class="total-price"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FTM</h1>
+            </div>
+            
+            <div class="row justify-content-around d-flex">
+              <input type="button" class="btn col-md-4 col-12 m-2 btn-success label_txt" value="Mint" disabled id=" mint_btn" />
+              <input type="button" class="btn col-md-4 col-12 m-2 btn-success label_txt" value="View" disabled id=" view_btn" />
+            </div>
+
+          </div>
+        </div>
       </div>
     </section><!-- End Features Section -->
 
-    <!-- ======= Services Section ======= -->
+    <!-- ======= RoadMap Section ======= -->
     <section id="services" class="services">
       <div class="container">
-
         <div class="section-title" data-aos="zoom-out">
           <p>-  ROADMAP  -</p>
         </div>
-
         <div class="row">
-          <div class="col-lg-6 col-12 col-md-6">
+          <div class="col-lg-6 col-md-12">
             <div class="icon-box row justify-content-between d-flex" data-aos-delay="100" data-aos="zoom-in-left">
-              <div class=" col-4">
+              <div class=" col-md-4 col-12 p-1">
                 <img src="assets/img/carousel/1.png" class="roadmap-img" alt="">
               </div>
-              <div class="col-7">
-                <h2 class="title"><a href="">11 2021</a></h2>
+              <div class="col-md-7 col-12 p-1">
+                <h2 class="title"><a href="">2021 . 11</a></h2>
                 <p class="description">-complete are</p>
                 <p class="description">-launch of website</p>
                 <p class="description">-social media kick off</p>
@@ -258,35 +254,32 @@
               </div>              
             </div>
           </div>
-          <div class="col-lg-6 col-md-6"></div>
-          <div class="col-lg-6 col-md-6"></div>
-          <div class="col-lg-6 col-md-6 col-12 mt-5">
+          <div class="col-lg-6 col-md-12"></div>
+          <div class="col-lg-6 col-md-12"></div>
+          <div class="col-lg-6 col-md-12 col-12 mt-5">
             <div class="icon-box row justify-content-between d-flex" data-aos="zoom-in-left" data-aos-delay="200">
-              <div class="col-4 d-flex">
+              <div class="col-md-4 d-flex col-12 p-1">
                 <img src="assets/img/carousel/2.png" class="roadmap-img" alt="">
               </div>
-              <div class="col-7">
-                <h2 class="title"><a href="">12 2021</a></h2>
+              <div class="col-md-7 col-12 p-1">
+                <h2 class="title"><a href="">2021 . 12</a></h2>
                 <p class="description">-deploy contract(ERC721)Dragon NFT</p>
-                <!-- <p class="description">  </p> -->
                 <p class="description">-D-app launch</p>
                 <p class="description">-no presale</p>
                 <p class="description">-start of public sale</p>
                 <p class="description">-deploy contract(ERC20)Grass Token</p>
-                <!-- <p class="description">  </p> -->
                 <p class="description">-Implement Grass token in our ecosystem</p>
                 <p class="description">-Grass airdrop to all Dragon minters(5Grass/day)</p>
               </div>   
             </div>
           </div>
-
-          <div class="col-lg-6 col-md-6 col-12 mt-5">
+          <div class="col-lg-6 col-md-12 col-12 mt-5">
             <div class="icon-box row justify-content-between d-flex" data-aos="zoom-in-left" data-aos-delay="300">
-              <div class=" col-4">
+              <div class=" col-md-4 col-12 p-1">
                 <img src="assets/img/carousel/3.png" class="roadmap-img" alt="">
               </div>
-              <div class="col-7">
-                <h2 class="title"><a href="">1 2022</a></h2>
+              <div class="col-md-7 col-12 p-1">
+                <h2 class="title"><a href="">2022 . 1</a></h2>
                 <p class="description">-Official launch Grass</p>
                 <p class="description">-implement staking</p>
                 <p class="description">stake Dragon get Grass(20Grass/day)</p>
@@ -295,16 +288,15 @@
               </div>
             </div>
           </div>
-
-          <div class="col-lg-6 col-md-6"></div>
-          <div class="col-lg-6 col-md-6"></div>
-          <div class="col-lg-6 col-md-6 col-12 mt-5">
+          <div class="col-lg-6 col-md-12"></div>
+          <div class="col-lg-6 col-md-12"></div>
+          <div class="col-lg-6 col-md-12 col-12 mt-5">
             <div class="icon-box row justify-content-between d-flex" data-aos="zoom-in-left" data-aos-delay="400">
-              <div class=" col-4">
+              <div class=" col-md-4 col-12 p-1">
                 <img src="assets/img/carousel/4.png" class="roadmap-img" alt="">
               </div>
-              <div class="col-7">
-                <h2 class="title"><a href="">2 2022</a></h2>
+              <div class="col-md-7 col-12 p-1">
+                <h2 class="title"><a href="">2022 . 2</a></h2>
                 <p class="description">-Deploy contract for the game</p>
                 <p class="description">-More buyable options in game</p>
                 <p class="description">-Expand game and giveaways</p>
@@ -312,13 +304,13 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-6 col-md-6 col-12 mt-5">
+          <div class="col-lg-6 col-md-12 col-12 mt-5">
             <div class="icon-box row justify-content-between d-flex" data-aos="zoom-in-left" data-aos-delay="300">
-              <div class=" col-4">
+              <div class=" col-md-4 col-12 p-1">
                 <img src="assets/img/carousel/5.png" class="roadmap-img" alt="">
               </div>
-              <div class="col-7">
-                <h2 class="title"><a href="">3 2022</a></h2>
+              <div class="col-md-7 col-12 p-1">
+                <h2 class="title"><a href="">2022 .3</a></h2>
                 <p class="description">-Start betting Game</p>
                 <p class="description">when enter game, devote some Grass. 
                   If you win game, you will receive many Grass.</p>
@@ -326,8 +318,8 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-6 col-md-6"></div>
-
+          <div class="col-lg-6 col-md-12"></div>
+        </div>
       </div>
     </section><!-- End Services Section -->
 
@@ -335,12 +327,11 @@
     <section id="team" class="team">
       <div class="container">
         <div class="section-title" data-aos="zoom-out">
-          <h2>Team</h2>
           <p>Our Hardworking Team</p>
         </div>
 
         <div class="row">
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+          <div class="col-lg-3 col-md-6 col-12 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up">
               <div class="member-img">
                 <img src="assets/image/18.png" class="img-fluid" alt="">
@@ -353,12 +344,12 @@
               </div>
               <div class="member-info">
                 <h4>Crypto Expert</h4>
-                <span>Artisanski</span>
+                <span>Artem grinski</span>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+          <div class="col-lg-3 col-md-6 col-12 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="100">
               <div class="member-img">
                 <img src="assets/image/16.png" class="img-fluid" alt="">
@@ -371,12 +362,12 @@
               </div>
               <div class="member-info">
                 <h4>Designer Mage</h4>
-                <span>Sarah Jhonson</span>
+                <span>Ivan Popov</span>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+          <div class="col-lg-3 col-md-6 col-12 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="200">
               <div class="member-img">
                 <img src="assets/image/15.png" class="img-fluid" alt="">
@@ -389,12 +380,12 @@
               </div>
               <div class="member-info">
                 <h4>Marketing Mage</h4>
-                <span>William Anderson</span>
+                <span>Sergey petrov</span>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+          <div class="col-lg-3 col-md-6 col-12 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="300">
               <div class="member-img">
                 <img src="assets/image/17.png" class="img-fluid" alt="">
@@ -407,7 +398,7 @@
               </div>
               <div class="member-info">
                 <h4>Tech / Art Mage</h4>
-                <span>Amanda Jepson</span>
+                <span>Milind jalgaonkar</span>
               </div>
             </div>
           </div>
@@ -423,7 +414,6 @@
   <footer id="footer">
     <div class="container">
       <h3>Dragon</h3>
-      <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
       <div class="social-links">
         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -432,14 +422,10 @@
         <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
       <div class="copyright">
-        &copy; Copyright <strong><span>Selecao</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>Dragon</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/selecao-bootstrap-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        Designed by <a href="https://bootstrapmade.com/">Ivan</a>
       </div>
     </div>
   </footer><!-- End Footer -->
@@ -456,38 +442,8 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <!-- <script>
-    window.onload = function() {
-      var countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
-
-      // Update the count down every 1 second
-      var x = setInterval(function() {
-
-        // Get today's date and time
-        var now = new Date().getTime();
-
-        // Find the distance between now and the count down date
-        var distance = countDownDate - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Display the result in the element with id="demo"
-        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-        + minutes + "m " + seconds + "s ";
-
-        // If the count down is finished, write some text
-        if (distance < 0) {
-          clearInterval(x);
-          document.getElementById("demo").innerHTML = "EXPIRED";
-        }
-      }, 1000);
-    
-  };
-    </script> -->
+  <script>
+  </script>
 </body>
 
 </html>

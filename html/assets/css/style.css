@@ -4,6 +4,22 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+
+.mint_btn .view_btn{
+  border-radius: 10px;
+  position:relative;z-index:1;
+}
+
+/* #btnCopy {}
+
+.disabled:before {
+  content:" ";
+  display:block;
+  position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  z-index:10;
+} */
+
 @media (min-width: 1200px) {
   .web-tag5{display: block;width:20%}
   .web-tag4{display: block;width:20%} 
@@ -59,9 +75,12 @@
   .mobile-btn{display: block;}
   .mobile-tag{display: block;}
 }
-.img-fluid{
-  box-shadow: 0 4px 8px 0 rgba(242, 242, 242, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
 
+
+
+.img-fluid{
+  border-radius: 25px;
+  box-shadow: 0 5px 8px 0 rgb(242 242 242 / 60%), 0 8px 20px 0 rgb(255 255 255 / 60%);
 }
 
 .roadmap-img{
@@ -808,7 +827,7 @@ section {
   overflow: hidden;
   border-radius: 10px;
   background: #fff;
-  box-shadow: 0 2px 29px 0 rgba(68, 88, 144, 0.12);
+  box-shadow: 0 5px 8px 0 rgb(242 242 242 / 60%), 0 8px 20px 0 rgb(255 255 255 / 60%);
   transition: all 0.4s ease-in-out;
   width: 100%;
   height: 100%;
@@ -1241,12 +1260,15 @@ section {
   background: #5e2589;
   padding: 60px 0;
 }
+.icon-box{
+  box-shadow: 0 5px 8px 0 rgb(242 242 242 / 60%), 0 8px 20px 0 rgb(255 255 255 / 60%);
+}
 .team .member {
   margin-bottom: 20px;
   overflow: hidden;
-  border-radius: 5px;
+  border-radius: 20px;
   background: #fff;
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 8px 0 rgb(242 242 242 / 60%), 0 8px 20px 0 rgb(255 255 255 / 60%);
 }
 .team .member .member-img {
   position: relative;
