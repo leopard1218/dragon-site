@@ -41,6 +41,9 @@ function initializeClock(id, endtime) {
 
     if (t.total <= 0) {
       clearInterval(timeinterval);
+document.getElementById('mint_num').disabled = false;
+document.getElementById('mint_btn').disabled = false;
+document.getElementById('view_btn').disabled = false;
     }
   }
 
