@@ -4,7 +4,7 @@ import { ethers } from 'ethers'
 import Web3 from 'web3'
 import Web3Modal from "web3modal";
 import DragonNFTCont from "../ABI/NFTContract.json"
-
+import axios from 'axios'
 const netchainId = 4002;
 const netchainIdHex = '0xFA2';
 const DragonNFTAddr = "0xbd80A70cd670144EB327132fad82D511409FD8e2";
@@ -15,19 +15,12 @@ const price = [100, 150, 200, 250, 300]
 let myAddr = "";
 function Mint() {
   const [mintNum, setMintNum] = useState(0)
-  const [currentPrice, setCurrentPrice] = useState(0)
-  const [totalSupply, setTotalSupply] = useState()
-  const array = [
-    {title:'img1', url:'./assets/image/1.png'},
-    {title:'img2', url:'./assets/image/2.png'},
-    {title:'img3', url:'./assets/image/3.png'},
-    {title:'img1', url:'./assets/image/1.png'},
-    {title:'img2', url:'./assets/image/2.png'},
-    {title:'img3', url:'./assets/image/3.png'},
-  ];
+  // const [currentPrice, setCurrentPrice] = useState(0)
+  const [totalSupply, setTotalSupply] = useState(0)
+  const [tokensOfOwner, setTokensOfOwner] = useState([]);
+
   useEffect(async () => {
     const web3 = new Web3(Web3.givenProvider);
-    let NFTContract;
     try {
       const chainId = await web3.eth.getChainId()
       if (chainId === netchainId) {
@@ -70,8 +63,21 @@ function Mint() {
     }
 
   }, [])
+  const calcPrice = () => {
+    const priceLimit = 2000 - totalSupply % 2000;
+    const priceId = Math.floor((totalSupply / 2000))
+    let totalPrice
+    if (mintNum > priceLimit) {
+      totalPrice = priceLimit * price[priceId] + (mintNum - priceLimit) * price[priceId + 1]
+      // setCurrentPrice(price[priceId + 1])
+    } else {
+      totalPrice = mintNum * price[priceId]
+      // setCurrentPrice(price[priceId])
+    }
+    return totalPrice
+  }
   const getInformation = async () => {
-    console.log('clickedddd')
+    console.log('getInformation')
     const web3 = new Web3(Web3.givenProvider);
     let NFTContract;
     try {
@@ -88,8 +94,8 @@ function Mint() {
           DragonNFTCont,
           provider
         )
-        const currentCost = await NFTContract.getCurrentPrice();
-        setCurrentPrice(new BigNumber(web3.utils.fromWei(`${currentCost}`, 'ether')))
+        // const currentCost = await NFTContract.getCurrentPrice();
+        // setCurrentPrice(new BigNumber(web3.utils.fromWei(`${currentCost}`, 'ether')))
         const total = await NFTContract.totalSupply()
         setTotalSupply(total)
       }
@@ -98,7 +104,7 @@ function Mint() {
     }
   }
   const onClickMint = async () => {
-    console.log('clicked')
+    console.log('onClickMint')
     const web3 = new Web3(Web3.givenProvider);
     let NFTContract;
     try {
@@ -116,6 +122,7 @@ function Mint() {
           signer
         )
         if (mintNum > 0) {
+          console.log('mintNum:', mintNum)
           const NFTCont = await NFTContract.mint(mintNum);
           await NFTCont.wait();
         }
@@ -125,17 +132,53 @@ function Mint() {
       console.log(err)
     }
   }
+  const getToken = async () => {
+    const web3 = new Web3(Web3.givenProvider);
+    let NFTContract;
+    try {
+      const chainId = await web3.eth.getChainId()
+      if (chainId === netchainId) {
+        const web3Modal = new Web3Modal();
+        const connection = await web3Modal.connect();
+        const provider = new ethers.providers.Web3Provider(connection);
+        const signer = provider.getSigner();
+        myAddr = signer.provider.provider.selectedAddress;
+        console.log(myAddr)
+        NFTContract = new ethers.Contract(
+          DragonNFTAddr,
+          DragonNFTCont,
+          provider
+        )
+        if (mintNum > 0) {
+          const walletOfOwner = await NFTContract.walletOfOwner(myAddr);
+          const tokenData = [];
+          for (var i = 0; i < walletOfOwner.length; i++) {
+            let tokenURI = await NFTContract.tokenURI(walletOfOwner[i] - 0);
+            // tokenURI = tokenURI.slice(0, 82)
+            const nftMetaData = await axios.get(tokenURI);
+            console.log(nftMetaData)
+            const nftTokenData = { img: nftMetaData.data.image, title: nftMetaData.data.name, tokenId: walletOfOwner[i] }
+            tokenData.push(nftTokenData);
+          }
+          setTokensOfOwner(tokenData);
+          console.log(tokenData)
+        }
 
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
   const ViewImg = (props) => {
     return (
       <div className="card-body">
-          <div className="row d-flex justify-content-center">
-            {props.items.map((item, key) => (
-              <div key={key} className="col-md-6 col-lg-4 col-xl-3 p-1 col-12">
-                  <img src={item.url} alt={item.title} className="viewimg rounded" />
-              </div>
-            ))}
-          </div>
+        <div className="row d-flex justify-content-center">
+          {props.items.map((item, key) => (
+            <div key={key} className="col-md-6 col-lg-4 col-xl-3 p-1 col-12">
+              <img src={item.url} alt={item.title} className="viewimg rounded" />
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
@@ -186,20 +229,18 @@ function Mint() {
               </div>
 
               <div className="row">
-                <h1 className="mt-4 pt-4">Total price is <span className="total-price number">{currentPrice * mintNum}</span>&nbsp;FTM</h1>
+                <h1 className="mt-4 pt-4">Total price is <span className="total-price number">{calcPrice()}</span>&nbsp;FTM</h1>
               </div>
 
               <div className="row justify-content-around d-flex">
                 <input type="button" className="btn col-md-4 col-12 m-2 btn-success label_txt" value="Mint" disabled id="mint_btn" onClick={() => onClickMint()} />
-                <input type="button" className="btn col-md-4 col-12 m-2 btn-success label_txt" data-bs-toggle="collapse" href="#collapseTwo" value="View" disabled id="view_btn" />
-                {/* <input type="button" className="btn col-md-4 col-12 m-2 btn-success label_txt" value="Mint" id="mint_btn" />
-                    <input type="button" className="btn col-md-4 col-12 m-2 btn-success label_txt" value="View" id="view_btn" /> */}
+                <input type="button" className="btn col-md-4 col-12 m-2 btn-success label_txt" data-bs-toggle="collapse" href="#collapseTwo" value="View" disabled id="view_btn" onClick={() => getToken()} />
               </div>
 
             </div>
           </div>
           <div id="collapseTwo" className="collapse" data-bs-parent="#accordion">
-            <ViewImg items={array}></ViewImg>
+            <ViewImg items={tokensOfOwner}></ViewImg>
           </div>
         </div>
       </section>
