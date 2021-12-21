@@ -224,11 +224,22 @@ body {
     transform: rotateY(-40deg) rotateX(-43deg);
   }
 }
-.mint_btn .view_btn{
+#mint_btn{
   border-radius: 10px;
-  position:relative;z-index:1;
+  position:relative;z-index:996;
 }
 
+#view_btn{
+  border-radius: 10px;
+  position:relative;z-index:996;
+}
+
+#mint_num{
+  position:relative;z-index:996;
+  font-size: 25px;
+  font-weight: 400;
+  color: white;
+}
 /* #btnCopy {}
 
 .disabled:before {

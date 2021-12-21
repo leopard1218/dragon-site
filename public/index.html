@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
 
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -31,9 +31,9 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
-  
 
-    <!--
+
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -42,11 +42,12 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
-  </head>
-  <body>
-   <div id="root"></div>
-    <!--
+  <title>React App</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -56,314 +57,318 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/js/main.js"></script>
-  
+
   <script>
 
-    $( document ).ready(function() {
-      (function() {
-      "use strict";
+    $(document).ready(function () {
+      (function () {
+        "use strict";
 
-      /**
-       * Easy selector helper function
-       */
-      const select = (el, all = false) => {
-        el = el.trim()
-        if (all) {
-          return [...document.querySelectorAll(el)]
-        } else {
-          return document.querySelector(el)
-        }
-      }
-
-      /**
-       * Easy event listener function
-       */
-      const on = (type, el, listener, all = false) => {
-        let selectEl = select(el, all)
-        if (selectEl) {
+        /**
+         * Easy selector helper function
+         */
+        const select = (el, all = false) => {
+          el = el.trim()
           if (all) {
-            selectEl.forEach(e => e.addEventListener(type, listener))
+            return [...document.querySelectorAll(el)]
           } else {
-            selectEl.addEventListener(type, listener)
+            return document.querySelector(el)
           }
         }
-      }
 
-      /**
-       * Easy on scroll event listener 
-       */
-      const onscroll = (el, listener) => {
-        el.addEventListener('scroll', listener)
-      }
-
-      /**
-       * Navbar links active state on scroll
-       */
-      let navbarlinks = select('#navbar .scrollto', true)
-      const navbarlinksActive = () => {
-        let position = window.scrollY + 200
-        navbarlinks.forEach(navbarlink => {
-          if (!navbarlink.hash) return
-          let section = select(navbarlink.hash)
-          if (!section) return
-          if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-            navbarlink.classList.add('active')
-          } else {
-            navbarlink.classList.remove('active')
-          }
-        })
-      }
-      window.addEventListener('load', navbarlinksActive)
-      onscroll(document, navbarlinksActive)
-
-      /**
-       * Scrolls to an element with header offset
-       */
-      const scrollto = (el) => {
-        let header = select('#header')
-        let offset = header.offsetHeight
-
-        let elementPos = select(el).offsetTop
-        window.scrollTo({
-          top: elementPos - offset,
-          behavior: 'smooth'
-        })
-      }
-
-      /**
-       * Toggle .header-scrolled class to #header when page is scrolled
-       */
-      let selectHeader = select('#header')
-      if (selectHeader) {
-        const headerScrolled = () => {
-          if (window.scrollY > 100) {
-            selectHeader.classList.add('header-scrolled')
-          } else {
-            selectHeader.classList.remove('header-scrolled')
-          }
-        }
-        window.addEventListener('load', headerScrolled)
-        onscroll(document, headerScrolled)
-      }
-
-      /**
-       * Back to top button
-       */
-      let backtotop = select('.back-to-top')
-      if (backtotop) {
-        const toggleBacktotop = () => {
-          if (window.scrollY > 100) {
-            backtotop.classList.add('active')
-          } else {
-            backtotop.classList.remove('active')
-          }
-        }
-        window.addEventListener('load', toggleBacktotop)
-        onscroll(document, toggleBacktotop)
-      }
-
-      /**
-       * Mobile nav toggle
-       */
-      on('click', '.mobile-nav-toggle', function(e) {
-        select('#navbar').classList.toggle('navbar-mobile')
-        this.classList.toggle('bi-list')
-        this.classList.toggle('bi-x')
-      })
-
-      /**
-       * Mobile nav dropdowns activate
-       */
-      on('click', '.navbar .dropdown > a', function(e) {
-        if (select('#navbar').classList.contains('navbar-mobile')) {
-          e.preventDefault()
-          this.nextElementSibling.classList.toggle('dropdown-active')
-        }
-      }, true)
-
-      /**
-       * Scrool with ofset on links with a class name .scrollto
-       */
-      on('click', '.scrollto', function(e) {
-        if (select(this.hash)) {
-          e.preventDefault()
-
-          let navbar = select('#navbar')
-          if (navbar.classList.contains('navbar-mobile')) {
-            navbar.classList.remove('navbar-mobile')
-            let navbarToggle = select('.mobile-nav-toggle')
-            navbarToggle.classList.toggle('bi-list')
-            navbarToggle.classList.toggle('bi-x')
-          }
-          scrollto(this.hash)
-        }
-      }, true)
-
-      /**
-       * Scroll with ofset on page load with hash links in the url
-       */
-      window.addEventListener('load', () => {
-        if (window.location.hash) {
-          if (select(window.location.hash)) {
-            scrollto(window.location.hash)
-          }
-        }
-      });
-
-      /**
-       * Porfolio isotope and filter
-       */
-      window.addEventListener('load', () => {
-        let portfolioContainer = select('.portfolio-container');
-        if (portfolioContainer) {
-          let portfolioIsotope = new Isotope(portfolioContainer, {
-            itemSelector: '.portfolio-item',
-          });
-
-          let portfolioFilters = select('#portfolio-flters li', true);
-
-          on('click', '#portfolio-flters li', function(e) {
-            e.preventDefault();
-            portfolioFilters.forEach(function(el) {
-              el.classList.remove('filter-active');
-            });
-            this.classList.add('filter-active');
-
-            portfolioIsotope.arrange({
-              filter: this.getAttribute('data-filter')
-            });
-            portfolioIsotope.on('arrangeComplete', function() {
-              AOS.refresh()
-            });
-          }, true);
-        }
-
-      });
-
-      /**
-       * Initiate portfolio lightbox 
-       */
-      const portfolioLightbox = GLightbox({
-        selector: '.portfolio-lightbox'
-      });
-
-      /**
-       * Portfolio details slider
-       */
-      new Swiper('.portfolio-details-slider', {
-        speed: 400,
-        loop: true,
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          type: 'bullets',
-          clickable: true
-        }
-      });
-
-      /**
-       * Testimonials slider
-       */
-      new Swiper('.testimonials-slider', {
-        speed: 600,
-        loop: true,
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false
-        },
-        slidesPerView: 'auto',
-        pagination: {
-          el: '.swiper-pagination',
-          type: 'bullets',
-          clickable: true
-        },
-        breakpoints: {
-          320: {
-            slidesPerView: 1,
-            spaceBetween: 20
-          },
-
-          1200: {
-            slidesPerView: 3,
-            spaceBetween: 20
-          }
-        }
-      });
-
-      /**
-       * Animation on scroll
-       */
-      window.addEventListener('load', () => {
-        AOS.init({
-          duration: 1000,
-          easing: 'ease-in-out',
-          once: true,
-          mirror: false
-        })
-      });
-
-    })()
-
-        function getTimeRemaining(endtime) {
-      const total = Date.parse(endtime) - Date.parse(new Date());
-      const seconds = Math.floor((total / 1000) % 60);
-      const minutes = Math.floor((total / 1000 / 60) % 60);
-      const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
-      const days = Math.floor(total / (1000 * 60 * 60 * 24));
-      
-      return {
-        total,
-        days,
-        hours,
-        minutes,
-        seconds
-      };
-    }
-
-    function initializeClock(id, endtime) {
-      const clock = document.getElementById(id);
-      const daysSpan = clock.querySelector('.days');
-      const hoursSpan = clock.querySelector('.hours');
-      const minutesSpan = clock.querySelector('.minutes');
-      const secondsSpan = clock.querySelector('.seconds');
-
-      function updateClock() {
-        const t = getTimeRemaining(endtime);
-
-        daysSpan.innerHTML = ('0' + t.days).slice(-2);
-        hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-        minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-        secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-
-        if (t.total <= 0) {
-          clearInterval(timeinterval);
-          document.getElementById('mint_num').disabled = false;
-          document.getElementById('mint_btn').disabled = false;
-          document.getElementById('view_btn').disabled = false;
-              }
+        /**
+         * Easy event listener function
+         */
+        const on = (type, el, listener, all = false) => {
+          let selectEl = select(el, all)
+          if (selectEl) {
+            if (all) {
+              selectEl.forEach(e => e.addEventListener(type, listener))
+            } else {
+              selectEl.addEventListener(type, listener)
             }
-
-            updateClock();
-            const timeinterval = setInterval(updateClock, 1000);
           }
-          var date = new Date('Mon Dec 20 2021 13:33:53 GMT+0900 (Japan Standard Time)')
+        }
 
-          const deadline = new Date(Date.parse(date) + 3 * 24 * 60 * 60 * 1000);
-          initializeClock('clockdiv', deadline);
-          
+        /**
+         * Easy on scroll event listener 
+         */
+        const onscroll = (el, listener) => {
+          el.addEventListener('scroll', listener)
+        }
+
+        /**
+         * Navbar links active state on scroll
+         */
+        let navbarlinks = select('#navbar .scrollto', true)
+        const navbarlinksActive = () => {
+          let position = window.scrollY + 200
+          navbarlinks.forEach(navbarlink => {
+            if (!navbarlink.hash) return
+            let section = select(navbarlink.hash)
+            if (!section) return
+            if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+              navbarlink.classList.add('active')
+            } else {
+              navbarlink.classList.remove('active')
+            }
+          })
+        }
+        window.addEventListener('load', navbarlinksActive)
+        onscroll(document, navbarlinksActive)
+
+        /**
+         * Scrolls to an element with header offset
+         */
+        const scrollto = (el) => {
+          let header = select('#header')
+          let offset = header.offsetHeight
+
+          let elementPos = select(el).offsetTop
+          window.scrollTo({
+            top: elementPos - offset,
+            behavior: 'smooth'
+          })
+        }
+
+        /**
+         * Toggle .header-scrolled class to #header when page is scrolled
+         */
+        let selectHeader = select('#header')
+        if (selectHeader) {
+          const headerScrolled = () => {
+            if (window.scrollY > 100) {
+              selectHeader.classList.add('header-scrolled')
+            } else {
+              selectHeader.classList.remove('header-scrolled')
+            }
+          }
+          window.addEventListener('load', headerScrolled)
+          onscroll(document, headerScrolled)
+        }
+
+        /**
+         * Back to top button
+         */
+        let backtotop = select('.back-to-top')
+        if (backtotop) {
+          const toggleBacktotop = () => {
+            if (window.scrollY > 100) {
+              backtotop.classList.add('active')
+            } else {
+              backtotop.classList.remove('active')
+            }
+          }
+          window.addEventListener('load', toggleBacktotop)
+          onscroll(document, toggleBacktotop)
+        }
+
+        /**
+         * Mobile nav toggle
+         */
+        on('click', '.mobile-nav-toggle', function (e) {
+          select('#navbar').classList.toggle('navbar-mobile')
+          this.classList.toggle('bi-list')
+          this.classList.toggle('bi-x')
+        })
+
+        /**
+         * Mobile nav dropdowns activate
+         */
+        on('click', '.navbar .dropdown > a', function (e) {
+          if (select('#navbar').classList.contains('navbar-mobile')) {
+            e.preventDefault()
+            this.nextElementSibling.classList.toggle('dropdown-active')
+          }
+        }, true)
+
+        /**
+         * Scrool with ofset on links with a class name .scrollto
+         */
+        on('click', '.scrollto', function (e) {
+          if (select(this.hash)) {
+            e.preventDefault()
+
+            let navbar = select('#navbar')
+            if (navbar.classList.contains('navbar-mobile')) {
+              navbar.classList.remove('navbar-mobile')
+              let navbarToggle = select('.mobile-nav-toggle')
+              navbarToggle.classList.toggle('bi-list')
+              navbarToggle.classList.toggle('bi-x')
+            }
+            scrollto(this.hash)
+          }
+        }, true)
+
+        /**
+         * Scroll with ofset on page load with hash links in the url
+         */
+        window.addEventListener('load', () => {
+          if (window.location.hash) {
+            if (select(window.location.hash)) {
+              scrollto(window.location.hash)
+            }
+          }
         });
 
+        /**
+         * Porfolio isotope and filter
+         */
+        window.addEventListener('load', () => {
+          let portfolioContainer = select('.portfolio-container');
+          if (portfolioContainer) {
+            let portfolioIsotope = new Isotope(portfolioContainer, {
+              itemSelector: '.portfolio-item',
+            });
+
+            let portfolioFilters = select('#portfolio-flters li', true);
+
+            on('click', '#portfolio-flters li', function (e) {
+              e.preventDefault();
+              portfolioFilters.forEach(function (el) {
+                el.classList.remove('filter-active');
+              });
+              this.classList.add('filter-active');
+
+              portfolioIsotope.arrange({
+                filter: this.getAttribute('data-filter')
+              });
+              portfolioIsotope.on('arrangeComplete', function () {
+                AOS.refresh()
+              });
+            }, true);
+          }
+
+        });
+
+        /**
+         * Initiate portfolio lightbox 
+         */
+        const portfolioLightbox = GLightbox({
+          selector: '.portfolio-lightbox'
+        });
+
+        /**
+         * Portfolio details slider
+         */
+        new Swiper('.portfolio-details-slider', {
+          speed: 400,
+          loop: true,
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            type: 'bullets',
+            clickable: true
+          }
+        });
+
+        /**
+         * Testimonials slider
+         */
+        new Swiper('.testimonials-slider', {
+          speed: 600,
+          loop: true,
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false
+          },
+          slidesPerView: 'auto',
+          pagination: {
+            el: '.swiper-pagination',
+            type: 'bullets',
+            clickable: true
+          },
+          breakpoints: {
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 20
+            },
+
+            1200: {
+              slidesPerView: 3,
+              spaceBetween: 20
+            }
+          }
+        });
+
+        /**
+         * Animation on scroll
+         */
+        window.addEventListener('load', () => {
+          AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+          })
+        });
+
+      })()
+
+      function getTimeRemaining(endtime) {
+        const total = Date.parse(endtime) - Date.parse(new Date());
+        const seconds = Math.floor((total / 1000) % 60);
+        const minutes = Math.floor((total / 1000 / 60) % 60);
+        const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+        const days = Math.floor(total / (1000 * 60 * 60 * 24));
+
+        return {
+          total,
+          days,
+          hours,
+          minutes,
+          seconds
+        };
+      }
+      
+      function initializeClock(id, endtime) {
+        const clock = document.getElementById(id);
+        const daysSpan = clock.querySelector('.days');
+        const hoursSpan = clock.querySelector('.hours');
+        const minutesSpan = clock.querySelector('.minutes');
+        const secondsSpan = clock.querySelector('.seconds');
+
+        function updateClock() {
+          const t = getTimeRemaining(endtime);          
+          if (t.total <= 0) {
+            daysSpan.innerHTML = '00';
+            hoursSpan.innerHTML = '00';
+            minutesSpan.innerHTML = '00';
+            secondsSpan.innerHTML = '00';
+            document.getElementById('mint_num').disabled = false;
+            document.getElementById('mint_btn').disabled = false;
+            document.getElementById('view_btn').disabled = false;
+            clearInterval(timeinterval);
+          } else {
+            daysSpan.innerHTML = ('0' + t.days).slice(-2);
+            hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+            minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+          }
+        }
+        const timeinterval = setInterval(updateClock, 1000);
+        // updateClock();
+        
+      }
+      var date = new Date('Mon Dec 20 2021 15:00:00 GMT+0900 (Japan Standard Time)')
+
+      const deadline = new Date(Date.parse(date) + 1 * 33 * 60.4 * 60 * 1000);
+      // const deadline = new Date(Date.parse(date) + 3 * 24 * 60 * 60 * 1000);
+      initializeClock('clockdiv', deadline);
+
+    });
+
   </script>
-  </body>
+</body>
+
 </html>
