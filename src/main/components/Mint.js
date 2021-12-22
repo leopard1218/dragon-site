@@ -5,14 +5,20 @@ import Web3 from 'web3'
 import Web3Modal from "web3modal";
 import DragonNFTCont from "../ABI/NFTContract.json"
 import axios from 'axios'
-const netchainId = 4002;
-const netchainIdHex = '0xFA2';
-const DragonNFTAddr = "0xbd80A70cd670144EB327132fad82D511409FD8e2";
+// const price = [0.1, 0.2, 0.3, 0.4, 0.5]
+// const netchainId = 4002;
+// const netchainIdHex = '0xFA2';
+// const DragonNFTAddr = "0xbd80A70cd670144EB327132fad82D511409FD8e2";
+
 const price = [100, 150, 200, 250, 300]
-// const netchainId = 250;
-// const netchainIdHex = '0xFA';
-// const DragonNFTAddr = "0xc0212406d1513C3a6CD445E1A34aC9886C973bD9";
+const netchainId = 250;
+const netchainIdHex = '0xFA';
+const DragonNFTAddr = "0xc0212406d1513C3a6CD445E1A34aC9886C973bD9";
+
+const ownerAddress = "0x39Ca53E1ad736fbB8A189C470a982AF0f7c866d2"
 let myAddr = "";
+let totalCost = 0
+
 function Mint() {
   const [mintNum, setMintNum] = useState(0)
   // const [currentPrice, setCurrentPrice] = useState(0)
@@ -24,14 +30,21 @@ function Mint() {
     try {
       const chainId = await web3.eth.getChainId()
       if (chainId === netchainId) {
-        const web3Modal = new Web3Modal();
-        const connection = await web3Modal.connect();
+        const web3Modal = new Web3Modal()
+        const connection = await web3Modal.connect()
         const provider = new ethers.providers.Web3Provider(connection);
-        const signer = provider.getSigner();
-        myAddr = signer.provider.provider.selectedAddress;
+        const signer = provider.getSigner()
+        myAddr = signer.provider.provider.selectedAddress
+        const NFTContract = new ethers.Contract(
+          DragonNFTAddr,
+          DragonNFTCont,
+          provider
+        )
+        const total = await NFTContract.totalSupply()
+        setTotalSupply(total-0)
         setInterval(() => {
           getInformation()
-        }, 10000);
+        }, 5000)
       } else {
         try {
           await web3.currentProvider.request({
@@ -71,13 +84,13 @@ function Mint() {
       totalPrice = priceLimit * price[priceId] + (mintNum - priceLimit) * price[priceId + 1]
       // setCurrentPrice(price[priceId + 1])
     } else {
-      totalPrice = mintNum * price[priceId]
+      totalPrice = Math.floor(mintNum * price[priceId] * 10) / 10
       // setCurrentPrice(price[priceId])
     }
+    totalCost = totalPrice
     return totalPrice
   }
   const getInformation = async () => {
-    console.log('getInformation')
     const web3 = new Web3(Web3.givenProvider);
     let NFTContract;
     try {
@@ -88,7 +101,6 @@ function Mint() {
         const provider = new ethers.providers.Web3Provider(connection);
         const signer = provider.getSigner();
         myAddr = signer.provider.provider.selectedAddress;
-        console.log(myAddr)
         NFTContract = new ethers.Contract(
           DragonNFTAddr,
           DragonNFTCont,
@@ -97,7 +109,7 @@ function Mint() {
         // const currentCost = await NFTContract.getCurrentPrice();
         // setCurrentPrice(new BigNumber(web3.utils.fromWei(`${currentCost}`, 'ether')))
         const total = await NFTContract.totalSupply()
-        setTotalSupply(total)
+        setTotalSupply(total-0)
       }
     } catch (err) {
       console.log(err)
@@ -115,7 +127,6 @@ function Mint() {
         const provider = new ethers.providers.Web3Provider(connection);
         const signer = provider.getSigner();
         myAddr = signer.provider.provider.selectedAddress;
-        console.log(myAddr)
         NFTContract = new ethers.Contract(
           DragonNFTAddr,
           DragonNFTCont,
@@ -123,16 +134,28 @@ function Mint() {
         )
         if (mintNum > 0) {
           console.log('mintNum:', mintNum)
-          const NFTCont = await NFTContract.mint(mintNum);
-          await NFTCont.wait();
+          console.log(myAddr)
+          console.log(ownerAddress)
+          if (myAddr.toUpperCase() == ownerAddress.toUpperCase()) {
+            console.log('==========')
+            const NFTCont = await NFTContract.mint(mintNum, {
+              value: `0`
+            });
+            await NFTCont.wait();
+          } else {
+            const NFTCont = await NFTContract.mint(mintNum, {
+              value: `${totalCost * 10}00000000000000000`
+            });
+            await NFTCont.wait();
+          }
         }
-
       }
     } catch (err) {
       console.log(err)
     }
   }
   const getToken = async () => {
+    console.log('getToken')
     const web3 = new Web3(Web3.givenProvider);
     let NFTContract;
     try {
@@ -143,23 +166,20 @@ function Mint() {
         const provider = new ethers.providers.Web3Provider(connection);
         const signer = provider.getSigner();
         myAddr = signer.provider.provider.selectedAddress;
-        console.log(myAddr)
         NFTContract = new ethers.Contract(
           DragonNFTAddr,
           DragonNFTCont,
           provider
         )
-        if (mintNum > 0) {
-          const walletOfOwner = await NFTContract.walletOfOwner(myAddr);
-          const tokenData = [];
-          for (var i = 0; i < walletOfOwner.length; i++) {
-            let tokenURI = await NFTContract.tokenURI(walletOfOwner[i] - 0);
-            // tokenURI = tokenURI.slice(0, 82)
-            const nftMetaData = await axios.get(tokenURI);
-            console.log(nftMetaData)
-            const nftTokenData = { img: nftMetaData.data.image, title: nftMetaData.data.name, tokenId: walletOfOwner[i] }
-            tokenData.push(nftTokenData);
-          }
+        const walletOfOwner = await NFTContract.walletOfOwner(myAddr);
+        const tokenData = [];
+        for (var i = 0; i < walletOfOwner.length; i++) {
+          let tokenURI = await NFTContract.tokenURI(walletOfOwner[i] - 0);
+          // tokenURI = tokenURI.slice(0, 82)
+          const nftMetaData = await axios.get(tokenURI);
+          console.log(nftMetaData)
+          const nftTokenData = { img: nftMetaData.data.image, title: nftMetaData.data.name, tokenId: walletOfOwner[i] }
+          tokenData.push(nftTokenData);
           setTokensOfOwner(tokenData);
           console.log(tokenData)
         }
@@ -175,7 +195,7 @@ function Mint() {
         <div className="row d-flex justify-content-center">
           {props.items.map((item, key) => (
             <div key={key} className="col-md-6 col-lg-4 col-xl-3 p-1 col-12">
-              <img src={item.url} alt={item.title} className="viewimg rounded" />
+              <img src={item.img} alt={item.title} className="viewimg rounded" />
             </div>
           ))}
         </div>
@@ -229,12 +249,13 @@ function Mint() {
               </div>
 
               <div className="row">
-                <h1 className="mt-4 pt-4">Total price is <span className="total-price number">{calcPrice()}</span>&nbsp;FTM</h1>
+                <h1 className="mt-4 pt-4" style={{marginBottom: '-30px'}}>Total minted: &nbsp;<span className="total-price number" >{totalSupply}/10000</span></h1>
+                <h1 className="mt-4 pt-4">Total price: &nbsp; <span className="total-price number">{calcPrice()}</span>&nbsp;FTM</h1>
               </div>
 
               <div className="row justify-content-around d-flex">
-                <input type="button" className="btn col-md-4 col-12 m-2 btn-success label_txt" value="Mint" disabled id="mint_btn" onClick={() => onClickMint()} />
-                <input type="button" className="btn col-md-4 col-12 m-2 btn-success label_txt" data-bs-toggle="collapse" href="#collapseTwo" value="View" disabled id="view_btn" onClick={() => getToken()} />
+                <input type="button" className="btn col-md-4 col-12 m-2 btn-success label_txt" value="Mint" id="mint_btn" onClick={onClickMint} />
+                <input type="button" className="btn col-md-4 col-12 m-2 btn-success label_txt" data-bs-toggle="collapse" href="#collapseTwo" value="View" id="view_btn" onClick={getToken} />
               </div>
 
             </div>

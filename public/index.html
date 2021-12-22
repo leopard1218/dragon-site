@@ -70,7 +70,9 @@
     $(document).ready(function () {
       (function () {
         "use strict";
-
+        document.getElementById('mint_num').disabled = true;
+        document.getElementById('mint_btn').disabled = true;
+        document.getElementById('view_btn').disabled = true;
         /**
          * Easy selector helper function
          */
@@ -330,7 +332,7 @@
           seconds
         };
       }
-      
+
       function initializeClock(id, endtime) {
         const clock = document.getElementById(id);
         const daysSpan = clock.querySelector('.days');
@@ -339,7 +341,7 @@
         const secondsSpan = clock.querySelector('.seconds');
 
         function updateClock() {
-          const t = getTimeRemaining(endtime);          
+          const t = getTimeRemaining(endtime);
           if (t.total <= 0) {
             daysSpan.innerHTML = '00';
             hoursSpan.innerHTML = '00';
@@ -358,12 +360,12 @@
         }
         const timeinterval = setInterval(updateClock, 1000);
         // updateClock();
-        
+
       }
       var date = new Date('Mon Dec 20 2021 15:00:00 GMT+0900 (Japan Standard Time)')
 
-      const deadline = new Date(Date.parse(date) + 1 * 33 * 60.4 * 60 * 1000);
-      // const deadline = new Date(Date.parse(date) + 3 * 24 * 60 * 60 * 1000);
+      // const deadline = new Date(Date.parse(date) + 1 * 42 * 60.3 * 60 * 1000);
+      const deadline = new Date(Date.parse(date) + 3 * 24 * 60 * 60 * 1000);
       initializeClock('clockdiv', deadline);
 
     });

@@ -36,14 +36,14 @@ body:after {
   filter: blur(1px);
   top: -1500%;
   background-image: url(http://www.freepngimg.com/download/winter_snow/4-2-white-snow-png.png);
-  background-size: 90%;
+  background-size: 40%;
   animation-duration: 200s;
 }
 .more-snow:before {
   filter: blur(4px);
   opacity: 0.8;
   top: -2500%;
-  background-size: 60%;
+  background-size: 20%;
   animation-duration: 100s;
 }
 .more-snow:after {
@@ -51,8 +51,11 @@ body:after {
   opacity: 0.8;
   top: -2000%;
   background-image: url(https://laviwebfiles.com/stage/codepen/4-2-white-snow-png.png);
-  background-size: 70%;
+  background-size: 30%;
   animation-duration: 50s;
+}
+.viewimg {
+  width: 100%;
 }
 @-webkit-keyframes MOVE-BG {
   from {
