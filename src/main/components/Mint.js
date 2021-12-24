@@ -239,7 +239,7 @@ function Mint() {
                   <label className="label_txt">Mint number</label>
                 </div>
                 <div className="col-7">
-                  <input type='number' id="mint_num" disabled
+                  <input type='number' id="mint_num"
                     onChange={(e) => {
                       if (e.target.value < 0) e.target.value = 0
                       else if (e.target.value > 20) e.target.value = 20

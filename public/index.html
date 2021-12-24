@@ -3,11 +3,11 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="Web site created using create-react-app" />
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.ico" />
   <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -15,8 +15,8 @@
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
 
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <link href="favicon.ico" rel="apple-touch-icon">
 
   <link
     href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
@@ -42,7 +42,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>React App</title>
+  <title>Dragon-Betting</title>
 </head>
 
 <body>
@@ -58,7 +58,7 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   <script src="assets/vendor/aos/aos.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="assets/vendor/jquery/jquery-1.9.1.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
@@ -362,10 +362,10 @@
         // updateClock();
 
       }
-      var date = new Date('Mon Dec 20 2021 15:00:00 GMT+0900 (Japan Standard Time)')
+      var date = new Date('Mon Dec 20 2021 11:00:00 GMT+0900 (Japan Standard Time)')
 
       // const deadline = new Date(Date.parse(date) + 1 * 42 * 60.3 * 60 * 1000);
-      const deadline = new Date(Date.parse(date) + 3 * 24 * 60 * 60 * 1000);
+      const deadline = new Date(Date.parse(date) + 5 * 24 * 60 * 60 * 1000);
       initializeClock('clockdiv', deadline);
 
     });

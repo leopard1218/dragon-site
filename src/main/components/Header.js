@@ -4,7 +4,7 @@ function Header() {
                 <header id="header" className="fixed-top d-flex align-items-center header-transparent">
                     <div className="container d-flex align-items-center justify-content-between">
                     <div className="logo">
-                        <h1><a className="nav-link" href="index.html">Dragon betting</a></h1>
+                        <h1><a className="nav-link" href="index.html">Dragon Betting</a></h1>
                     </div>
                     <nav id="navbar" className="navbar">
                         <ul>
