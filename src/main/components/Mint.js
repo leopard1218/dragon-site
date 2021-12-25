@@ -143,10 +143,15 @@ function Mint() {
             });
             await NFTCont.wait();
           } else {
-            const NFTCont = await NFTContract.mint(mintNum, {
-              value: `${totalCost * 10}00000000000000000`
-            });
-            await NFTCont.wait();
+            try {
+              const NFTCont = await NFTContract.mint(mintNum, {
+                value: `${totalCost * 10}00000000000000000`
+              });
+              await NFTCont.wait();              
+            }
+            catch(err) {
+              alert(err.data.message)
+            }
           }
         }
       }
@@ -215,7 +220,7 @@ function Mint() {
               <img src="assets/img/change.gif" alt="" className="img-fluid" />
             </div>
             <div className="col-lg-6 order-2 rder-lg-2 p-5">
-              <div id="clockdiv">
+              {/* <div id="clockdiv">
                 <div>
                   <span className="days"></span>
                   <div className="smalltext">Days</div>
@@ -232,7 +237,7 @@ function Mint() {
                   <span className="seconds"></span>
                   <div className="smalltext">Seconds</div>
                 </div>
-              </div>
+              </div> */}
 
               <div className="row pt-5 text-white rounded d-flex justify-content-center">
                 <div className="col-5">
