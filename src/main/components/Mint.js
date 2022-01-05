@@ -5,28 +5,45 @@ import Web3 from 'web3'
 import Web3Modal from "web3modal";
 import DragonNFTCont from "../ABI/NFTContract.json"
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // const price = [0.1, 0.2, 0.3, 0.4, 0.5]
 // const netchainId = 4002;
 // const netchainIdHex = '0xFA2';
-// const DragonNFTAddr = "0xbd80A70cd670144EB327132fad82D511409FD8e2";
+// const DragonNFTAddr = "0x55127DE23933C8B895feAf258714427A5e73D361";
 
-const price = [100, 150, 200, 250, 300]
+const price = [30, 50, 70, 90, 110]
 const netchainId = 250;
 const netchainIdHex = '0xFA';
-const DragonNFTAddr = "0xc0212406d1513C3a6CD445E1A34aC9886C973bD9";
+const DragonNFTAddr = "0x6780f5198eB4Fb85a27f9E89BE253bdEf7064078";
 
+const baseURI = "https://gateway.pinata.cloud/ipfs/QmfEiTuuALmUi7DD3VHBLemszf2n2u5WPQjLY1AJ84Gfnq/"
+const extension = ".json"
 const ownerAddress = "0x39Ca53E1ad736fbB8A189C470a982AF0f7c866d2"
 let myAddr = "";
 let totalCost = 0
 
 function Mint() {
-  const [mintNum, setMintNum] = useState(0)
+  const [mintNum, setMintNum] = useState(1)
   // const [currentPrice, setCurrentPrice] = useState(0)
   const [totalSupply, setTotalSupply] = useState(0)
   const [tokensOfOwner, setTokensOfOwner] = useState([]);
 
+  const toastErr = (msg) => {
+    toast.error(msg, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored"
+    });
+  }
+
   useEffect(async () => {
     const web3 = new Web3(Web3.givenProvider);
+
     try {
       const chainId = await web3.eth.getChainId()
       if (chainId === netchainId) {
@@ -41,7 +58,7 @@ function Mint() {
           provider
         )
         const total = await NFTContract.totalSupply()
-        setTotalSupply(total-0)
+        setTotalSupply(total - 0)
         setInterval(() => {
           getInformation()
         }, 5000)
@@ -66,26 +83,33 @@ function Mint() {
                 ],
               });
             } catch (error) {
-              alert(error.message);
+              toastErr(error.message);
             }
           }
         }
       }
     } catch (err) {
-      console.log(err)
+      // console.log(err)
+      toastErr("Please install Metamask")
     }
 
   }, [])
+
+
   const calcPrice = () => {
     const priceLimit = 2000 - totalSupply % 2000;
     const priceId = Math.floor((totalSupply / 2000))
     let totalPrice
-    if (mintNum > priceLimit) {
-      totalPrice = priceLimit * price[priceId] + (mintNum - priceLimit) * price[priceId + 1]
-      // setCurrentPrice(price[priceId + 1])
+    if (totalSupply < 500) {
+      totalPrice = 0;
     } else {
-      totalPrice = Math.floor(mintNum * price[priceId] * 10) / 10
-      // setCurrentPrice(price[priceId])
+      if (mintNum > priceLimit) {
+        totalPrice = priceLimit * price[priceId] + (mintNum - priceLimit) * price[priceId + 1]
+        // setCurrentPrice(price[priceId + 1])
+      } else {
+        totalPrice = Math.floor(mintNum * price[priceId] * 10) / 10
+        // setCurrentPrice(price[priceId])
+      }
     }
     totalCost = totalPrice
     return totalPrice
@@ -109,7 +133,7 @@ function Mint() {
         // const currentCost = await NFTContract.getCurrentPrice();
         // setCurrentPrice(new BigNumber(web3.utils.fromWei(`${currentCost}`, 'ether')))
         const total = await NFTContract.totalSupply()
-        setTotalSupply(total-0)
+        setTotalSupply(total - 0)
       }
     } catch (err) {
       console.log(err)
@@ -133,11 +157,7 @@ function Mint() {
           signer
         )
         if (mintNum > 0) {
-          console.log('mintNum:', mintNum)
-          console.log(myAddr)
-          console.log(ownerAddress)
           if (myAddr.toUpperCase() == ownerAddress.toUpperCase()) {
-            console.log('==========')
             const NFTCont = await NFTContract.mint(mintNum, {
               value: `0`
             });
@@ -147,20 +167,22 @@ function Mint() {
               const NFTCont = await NFTContract.mint(mintNum, {
                 value: `${totalCost * 10}00000000000000000`
               });
-              await NFTCont.wait();              
+              await NFTCont.wait();
             }
-            catch(err) {
-              alert(err.data.message)
+            catch (err) {
+              toastErr(err.data.message)
             }
           }
+        } else {
+          toastErr("Please insert mint number!")
         }
+
       }
     } catch (err) {
       console.log(err)
     }
   }
   const getToken = async () => {
-    console.log('getToken')
     const web3 = new Web3(Web3.givenProvider);
     let NFTContract;
     try {
@@ -179,16 +201,13 @@ function Mint() {
         const walletOfOwner = await NFTContract.walletOfOwner(myAddr);
         const tokenData = [];
         for (var i = 0; i < walletOfOwner.length; i++) {
-          let tokenURI = await NFTContract.tokenURI(walletOfOwner[i] - 0);
-          // tokenURI = tokenURI.slice(0, 82)
+          // let tokenURI = await NFTContract.tokenURI(walletOfOwner[i] - 0);
+          const tokenURI = baseURI + walletOfOwner[i] + extension
           const nftMetaData = await axios.get(tokenURI);
-          console.log(nftMetaData)
           const nftTokenData = { img: nftMetaData.data.image, title: nftMetaData.data.name, tokenId: walletOfOwner[i] }
           tokenData.push(nftTokenData);
-          setTokensOfOwner(tokenData);
-          console.log(tokenData)
         }
-
+        setTokensOfOwner(tokenData);
       }
     } catch (err) {
       console.log(err)
@@ -214,6 +233,7 @@ function Mint() {
         <div className="container">
           <div className="section-title" data-aos="zoom-out">
             <p>-  MINT -</p>
+            <p>Address: 0x6780f5198eB4Fb85a27f9E89BE253bdEf7064078</p>
           </div>
           <div className="row">
             <div className="col-lg-6 order-1 d-flex justify-content-center order-lg-1 mt-3 mt-lg-0">
@@ -244,17 +264,24 @@ function Mint() {
                   <label className="label_txt">Mint number</label>
                 </div>
                 <div className="col-7">
-                  <input type='number' id="mint_num"
+                  <input type='number' id="mint_num" value="1"
                     onChange={(e) => {
-                      if (e.target.value < 0) e.target.value = 0
-                      else if (e.target.value > 20) e.target.value = 20
-                      setMintNum(e.target.value)
+                      if (totalSupply < 500) {
+                        if (e.target.value < 1) e.target.value = 1
+                        else if (e.target.value > 1) e.target.value = 1
+                        setMintNum(e.target.value)
+                      } else {
+                        if (e.target.value < 1) e.target.value = 1
+                        else if (e.target.value > 20) e.target.value = 20
+                        setMintNum(e.target.value)
+                      }
+
                     }} />
                 </div>
               </div>
 
               <div className="row">
-                <h1 className="mt-4 pt-4" style={{marginBottom: '-30px'}}>Total minted: &nbsp;<span className="total-price number" >{totalSupply}/10000</span></h1>
+                <h1 className="mt-4 pt-4" style={{ marginBottom: '-30px' }}>Total minted: &nbsp;<span className="total-price number" >{totalSupply}/10000</span></h1>
                 <h1 className="mt-4 pt-4">Total price: &nbsp; <span className="total-price number">{calcPrice()}</span>&nbsp;FTM</h1>
               </div>
 
@@ -269,7 +296,9 @@ function Mint() {
             <ViewImg items={tokensOfOwner}></ViewImg>
           </div>
         </div>
+        <ToastContainer />
       </section>
+
     </>
   )
 

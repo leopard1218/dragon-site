@@ -34,10 +34,11 @@ function Roadmap() {
                     </div>
 
                     <div className="col-md-7 col-12 p-1">
-                        <h2 className="title"><a href="">2021 . 12</a></h2>
-                        <p className="description">-deploy contract(ERC721)Dragon NFT</p>
+                        <h2 className="title"><a href="">2022 . 1</a></h2>
+                        <p className="description">-deploy contract(ERC721)</p>
                         <p className="description">&nbsp;&nbsp;Dragon NFT</p>
                         <p className="description">-D-app launch</p>
+                        <p className="description">-start of airdrop</p>
                         <p className="description">-start of public sale</p>
                     </div>   
                     </div>
@@ -50,7 +51,7 @@ function Roadmap() {
                         <img src="assets/img/carousel/3.png" alt="" className="roadmap-img" />
                     </div>
                     <div className="col-md-7 col-12 p-1">
-                        <h2 className="title"><a href="">2022 . 1</a></h2>
+                        <h2 className="title"><a href="">2022 . 2</a></h2>
                         <p className="description">-deploy contract(ERC20)</p>
                         <p className="description">-Implement Grass token in our ecosystem</p>
                         <p className="description">-deploy contract for farm</p>
@@ -70,7 +71,7 @@ function Roadmap() {
                         <img src="assets/img/carousel/4.png" alt="" className="roadmap-img" />
                     </div>
                     <div className="col-md-7 col-12 p-1">
-                        <h2 className="title"><a href="">2022 . 2</a></h2>
+                        <h2 className="title"><a href="">2022 . 3</a></h2>
                         <p className="description">-Deploy contract for the game</p>
                         <p className="description">-More buyable options in game</p>
                         <p className="description">-Expand game and giveaways</p>
@@ -85,7 +86,7 @@ function Roadmap() {
                         <img src="assets/img/carousel/5.png" alt="" className="roadmap-img" />
                     </div>
                     <div className="col-md-7 col-12 p-1">
-                        <h2 className="title"><a href="">2022 .3</a></h2>
+                        <h2 className="title"><a href="">2022 .4</a></h2>
                         <p className="description">-Start betting Game</p>
                         <p className="description">when enter game, devote some Grass. 
                         If you win game, you will receive many Grass.</p>
