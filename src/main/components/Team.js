@@ -22,7 +22,7 @@ function Team() {
                             </div>
                             <div className="member-info">
                                 <h4>Crypto Expert</h4>
-                                <span>Sergey Petrov</span>
+                                <span>Arnold Kunkel</span>
                             </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@ function Team() {
                             </div>
                             <div className="member-info">
                                 <h4>Designer Mage</h4>
-                                <span>Artem grinski</span>
+                                <span>Sergey Petrov</span>
                             </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@ function Team() {
                             </div>
                             <div className="member-info">
                                 <h4>Developer Mage</h4>
-                                <span>Arnold Kunkel</span>
+                                <span>Faister Carvalho</span>
                             </div>
                             </div>
                         </div>
