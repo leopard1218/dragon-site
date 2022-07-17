@@ -22,7 +22,7 @@ function Team() {
                                 </div>
                                 <div className="member-info">
                                     <h4>Crypto Expert</h4>
-                                    <span>Dmytro Halych</span>
+                                    <span>Georgy Hong</span>
                                 </div>
                             </div>
                         </div>
